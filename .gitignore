@@ -1,0 +1,26 @@
+# =========================
+# Ficheiros do .NET / C#
+# =========================
+bin/
+obj/
+TestResults/
+*.user
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Ficheiros do JetBrains Rider
+# =========================
+.idea/
+*.sln.iml
+*.ReSharper
+*.ReSharper.user
+_ReSharper.*/
+.ReSharper.Caches/
+riderModule.iml
+
+# =========================
+# Sistema Operativo
+# =========================
+.DS_Store
+Thumbs.db
