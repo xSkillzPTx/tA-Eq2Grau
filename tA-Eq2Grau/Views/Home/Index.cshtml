@@ -4,22 +4,42 @@
 
 <div class="text-center">
     <h1 class="display-4">Equação de 2º Grau</h1>
-    <img src="https://imgs.search.brave.com/3eSdlaOFd7TqL2L4ixClF_vQwdNqg5WbDm7lWQiUMlo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paDEu/cmVkYnViYmxlLm5l/dC9pbWFnZS4xNDE3/MDAyMDAxLjk2MzUv/ZmxhdCw3NTB4LDA3/NSxmLXBhZCw3NTB4/MTAwMCxmOGY4Zjgu/anBn"
+    <img src="~/img/formula.jpeg"
          alt="Imagem da fórmula resolvente" 
          width = "200"
+         style=""
     />
 </div>
 
-<form>
+<form class="text-center">
     <p>Parâmetros da equação 2º grau</p>
-    <p>
-        A:<input type="text" id="A" name="A"/><br>
-        B:<input type="text" id="B" name="B"/><br>
-        C:<input type="text" id="C" name="C"/><br>
-    </p>
+    <div>
+        <p>A:<input type="text" id="A" name="A"/><br></p>
+        <p>B:<input type="text" id="B" name="B"/><br></p>
+        <p>C:<input type="text" id="C" name="C"/><br></p>
+    </div>
     <input type="submit" value="Calcular"/>
 </form>
 
+
+@if (ViewBag.ErroA != null)
+{
+    <h3 class="text-center" style="color: red;">@ViewBag.ErroA</h3>
+}
+@if (ViewBag.ErroB != null)
+{
+    <h3 class="text-center" style="color: red;">@ViewBag.ErroB</h3>
+}
+@if (ViewBag.ErroC != null)
+{
+    <h3 class="text-center" style="color: red;">@ViewBag.ErroC</h3>
+}
+
+@if (ViewBag.ErroAe0 != null)
+{
+    <h3 class="text-center" style="color: red;">@ViewBag.ErroAe0</h3>
+
+}
 @*
 Os comentários em CSHMTL tem que ser assim, quem faz isto ser um comentário é o Motor Razor
 <input type="text" id="A" name="A"/><br>
@@ -28,9 +48,11 @@ name -> Identifica a 'textbox' no Server
 *@
 
 @*resposta do controller*@
-<div>
-    <p>
-        Resultado X1 = @ViewBag.x1 <br>
-        Resultado X2 = @ViewBag.x2
-    </p>
-</div>
+@if (ViewBag.x1 != null && ViewBag.x2 != null) {
+    <div class="text-center">
+        <p>
+            Resultado X1 = @ViewBag.x1 <br>
+            Resultado X2 = @ViewBag.x2
+        </p>
+    </div>
+}

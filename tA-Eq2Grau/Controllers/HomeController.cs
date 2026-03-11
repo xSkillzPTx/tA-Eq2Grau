@@ -26,34 +26,40 @@ namespace tA_Eq2Grau.Controllers;
              *  3.4 -> Informar o utilizador das raízes compelxas
              *  Senão, notificar o utilizador de como corrigir o problema
              */
-            
+            if (A == null || B == null || C == null)
+            {
+                return View();
+            }
+
             //2.1
             if (!float.TryParse(A, out float a))
             //A não é número
-            //Falta ainda gerar a msg de erro,
-            //para ajudar o utilizador a corrigir o problema
             {
+                ViewBag.ErroA="Atenção: O valor de A que introduziu não é um número válido!";
                 return View();
             }
             
             if (!float.TryParse(B, out float b))
                 //B não é número
-                //Falta ainda gerar a msg de erro,
-                //para ajudar o utilizador a corrigir o problema
             {
+                ViewBag.ErroB="Atenção: O valor de B que introduziu não é um número válido!";
                 return View();
             }
             
             if (!float.TryParse(C, out float c))
                 //C não é número
-                //Falta ainda gerar a msg de erro,
-                //para ajudar o utilizador a corrigir o problema
             {
+                ViewBag.ErroC="Atenção: O valor de C que introduziu não é um número válido!";
                 return View();
             }
             
-            //falta avaliar se A é 0
-            
+            //2.2
+            //Validar se A é 0
+            if (a == 0)
+            {
+                ViewBag.ErroAe0 = "Atenção: O valor de A não pode ser 0";
+                return View();
+            }
             
             //3.1
             float delta = b * b - 4 * a * c;
@@ -70,8 +76,14 @@ namespace tA_Eq2Grau.Controllers;
                 ViewBag.x1 = x1;
                 ViewBag.x2 = x2;
             }
-
-
+            else
+            {
+                float parteReal = (-b / (2 * a));
+                float parteImaginaria = MathF.Sqrt(-delta)/(2*a);
+                ViewBag.x1 = parteReal + " + " + parteImaginaria + " i ";
+                ViewBag.x2 = parteReal + " - " + parteImaginaria + " i ";
+            }
+            
             return View();
         }
         public IActionResult Privacy() {
@@ -81,4 +93,5 @@ namespace tA_Eq2Grau.Controllers;
         public IActionResult Error() {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        
     }
